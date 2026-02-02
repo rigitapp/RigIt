@@ -1,0 +1,44 @@
+# Embedded git repos
+.solana-skill/
+
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+target/
+dist/
+out/
+.next/
+.turbo/
+
+# Anchor/Solana
+.anchor/
+test-ledger/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
+*.pem
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Remotion
+apps/video/out/
+
+# Audio assets (add back specific files you want tracked)
+# apps/video/public/audio/*.mp3

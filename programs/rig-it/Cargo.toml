@@ -1,0 +1,24 @@
+[package]
+name = "rig-it"
+version = "0.1.0"
+description = "Rig It - Gamified raffle engine on Solana"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "rig_it"
+
+[features]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+cpi = ["no-entrypoint"]
+default = []
+idl-build = ["anchor-lang/idl-build", "anchor-spl/idl-build"]
+
+[dependencies]
+anchor-lang = { version = "0.31.1", features = ["init-if-needed"] }
+anchor-spl = "0.31.1"
+
+# [dev-dependencies]
+# Add when running integration tests with compatible versions

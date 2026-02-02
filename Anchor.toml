@@ -1,0 +1,22 @@
+[features]
+seeds = false
+skip-lint = false
+resolution = true
+
+[programs.localnet]
+rig_it = "RiG1tPRogRamXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+
+[programs.devnet]
+rig_it = "RiG1tPRogRamXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "Localnet"
+wallet = "~/.config/solana/id.json"
+
+[scripts]
+test = "pnpm run test"
+init-local = "npx ts-node scripts/init-local.ts"
+simulate = "npx ts-node scripts/simulate-exploration.ts"

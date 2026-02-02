@@ -1,0 +1,30 @@
+{
+  "name": "@rig-it/orchestrator",
+  "version": "0.1.0",
+  "description": "Backend orchestrator for Rig It protocol",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node-dev --respawn src/index.ts",
+    "start": "node dist/index.js",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@coral-xyz/anchor": "^0.31.0",
+    "@rig-it/sdk": "workspace:*",
+    "@solana/web3.js": "^1.87.6",
+    "@solana/spl-token": "^0.3.9",
+    "bn.js": "^5.2.1",
+    "dotenv": "^16.3.1",
+    "node-cron": "^3.0.3",
+    "pino": "^8.17.2",
+    "pino-pretty": "^10.3.1"
+  },
+  "devDependencies": {
+    "@types/bn.js": "^5.1.5",
+    "@types/node": "^20.10.5",
+    "@types/node-cron": "^3.0.11",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.3"
+  }
+}

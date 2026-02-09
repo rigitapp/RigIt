@@ -32,11 +32,11 @@ pub struct StartExploration<'info> {
         ],
         bump
     )]
-    pub exploration_state: Account<'info, ExplorationState>,
+    pub exploration_state: Box<Account<'info, ExplorationState>>,
 
     /// Previous exploration (optional, for rollover validation)
     /// If this is the first exploration, this can be any account
-    pub previous_exploration: Option<Account<'info, ExplorationState>>,
+    pub previous_exploration: Option<Box<Account<'info, ExplorationState>>>,
 
     #[account(
         mut,

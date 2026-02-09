@@ -37,7 +37,7 @@ pub struct RevealRandomness<'info> {
         bump = exploration_state.bump,
         constraint = exploration_state.status == ExplorationStatus::Finalizing @ RigItError::ExplorationNotFinalizing,
     )]
-    pub exploration_state: Account<'info, ExplorationState>,
+    pub exploration_state: Box<Account<'info, ExplorationState>>,
 
     #[account(
         constraint = operator.key() == protocol_config.operator @ RigItError::Unauthorized
@@ -167,7 +167,7 @@ pub struct RevealTimeoutFallback<'info> {
         bump = exploration_state.bump,
         constraint = exploration_state.status == ExplorationStatus::Finalizing @ RigItError::ExplorationNotFinalizing,
     )]
-    pub exploration_state: Account<'info, ExplorationState>,
+    pub exploration_state: Box<Account<'info, ExplorationState>>,
 
     /// Anyone can call this (permissionless)
     pub caller: Signer<'info>,

@@ -3,6 +3,8 @@
 import { FC } from 'react';
 import { motion } from 'framer-motion';
 import { BLOCK_IDS } from '@rig-it/sdk';
+import { PumpLogo } from './PumpLogo';
+import { SkrLogo } from './SkrLogo';
 
 interface Block {
   id: number;
@@ -24,14 +26,14 @@ const BLOCKS: Block[] = [
     id: BLOCK_IDS.PUMP,
     name: 'PUMP Block',
     symbol: 'PUMP',
-    icon: '🚀',
+    icon: 'pump',
     color: 'from-green-500 to-emerald-500',
   },
   {
     id: BLOCK_IDS.SKR,
     name: 'SKR Block',
     symbol: 'SKR',
-    icon: '💀',
+    icon: 'skr',
     color: 'from-red-500 to-orange-500',
   },
 ];
@@ -78,11 +80,17 @@ export const BlockSelector: FC<BlockSelectorProps> = ({
               <div className="relative z-10">
                 <div
                   className={`
-                    w-12 h-12 rounded-full mx-auto mb-3 flex items-center justify-center
+                    w-12 h-12 rounded-full mx-auto mb-3 flex items-center justify-center p-2
                     bg-gradient-to-br ${block.color}
                   `}
                 >
-                  <span className="text-2xl">{block.icon}</span>
+                  {block.icon === 'pump' ? (
+                    <PumpLogo className="w-full h-full" isActive={true} />
+                  ) : block.icon === 'skr' ? (
+                    <SkrLogo className="w-full h-full" isActive={true} />
+                  ) : (
+                    <span className="text-2xl">{block.icon}</span>
+                  )}
                 </div>
                 
                 <p className={`

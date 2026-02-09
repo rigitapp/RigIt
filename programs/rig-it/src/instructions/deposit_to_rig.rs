@@ -31,7 +31,7 @@ pub struct DepositToRig<'info> {
         bump = block_state.bump,
         constraint = !block_state.paused @ RigItError::BlockPaused,
     )]
-    pub block_state: Account<'info, BlockState>,
+    pub block_state: Box<Account<'info, BlockState>>,
 
     #[account(
         mut,
@@ -43,7 +43,7 @@ pub struct DepositToRig<'info> {
         bump = exploration_state.bump,
         constraint = exploration_state.status == ExplorationStatus::Active @ RigItError::ExplorationNotActive,
     )]
-    pub exploration_state: Account<'info, ExplorationState>,
+    pub exploration_state: Box<Account<'info, ExplorationState>>,
 
     #[account(
         init_if_needed,
@@ -52,7 +52,7 @@ pub struct DepositToRig<'info> {
         seeds = [RigState::SEED, exploration_state.key().as_ref(), &[args.rig_index]],
         bump
     )]
-    pub rig_state: Account<'info, RigState>,
+    pub rig_state: Box<Account<'info, RigState>>,
 
     #[account(
         init,
@@ -66,7 +66,7 @@ pub struct DepositToRig<'info> {
         ],
         bump
     )]
-    pub deposit_receipt: Account<'info, DepositReceipt>,
+    pub deposit_receipt: Box<Account<'info, DepositReceipt>>,
 
     #[account(mut)]
     pub user: Signer<'info>,
@@ -84,10 +84,10 @@ pub struct DepositToRig<'info> {
         bump,
         constraint = block_vault.mint == block_state.asset_mint,
     )]
-    pub block_vault: Account<'info, TokenAccount>,
+    pub block_vault: Box<Account<'info, TokenAccount>>,
 
     /// Optional: User's $RIG token account for multiplier calculation
-    pub user_rig_token_account: Option<Account<'info, TokenAccount>>,
+    pub user_rig_token_account: Option<Box<Account<'info, TokenAccount>>>,
 
     /// $RIG token mint (for validation)
     pub rig_token_mint: Option<Account<'info, Mint>>,
@@ -221,13 +221,13 @@ pub struct ClaimAntiSnipedDeposit<'info> {
         constraint = original_receipt.rolled_to_exploration.is_none() @ RigItError::DepositAlreadyRolledOver,
         constraint = original_receipt.user == user.key() @ RigItError::Unauthorized,
     )]
-    pub original_receipt: Account<'info, DepositReceipt>,
+    pub original_receipt: Box<Account<'info, DepositReceipt>>,
 
     #[account(
         mut,
         constraint = next_exploration.status == ExplorationStatus::Active @ RigItError::ExplorationNotActive,
     )]
-    pub next_exploration: Account<'info, ExplorationState>,
+    pub next_exploration: Box<Account<'info, ExplorationState>>,
 
     #[account(
         init_if_needed,
@@ -240,7 +240,7 @@ pub struct ClaimAntiSnipedDeposit<'info> {
         ],
         bump
     )]
-    pub next_rig_state: Account<'info, RigState>,
+    pub next_rig_state: Box<Account<'info, RigState>>,
 
     #[account(
         init,
@@ -254,7 +254,7 @@ pub struct ClaimAntiSnipedDeposit<'info> {
         ],
         bump
     )]
-    pub new_receipt: Account<'info, DepositReceipt>,
+    pub new_receipt: Box<Account<'info, DepositReceipt>>,
 
     #[account(mut)]
     pub user: Signer<'info>,

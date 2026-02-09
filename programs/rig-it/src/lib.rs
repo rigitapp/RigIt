@@ -8,7 +8,7 @@ pub mod utils;
 
 use instructions::*;
 
-declare_id!("RiG1tPRogRamXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+declare_id!("CPHYypjTxBkMCpXAxQAXPQkA4AMKZXyTRXhhSDPBzzDo");
 
 #[program]
 pub mod rig_it {

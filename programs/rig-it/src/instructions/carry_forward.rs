@@ -18,7 +18,7 @@ pub struct CarryForward<'info> {
         constraint = rolled_exploration.status == ExplorationStatus::RolledOver @ RigItError::InvalidExplorationStatus,
         constraint = !rolled_exploration.carry_forward_done @ RigItError::CarryForwardAlreadyDone,
     )]
-    pub rolled_exploration: Account<'info, ExplorationState>,
+    pub rolled_exploration: Box<Account<'info, ExplorationState>>,
 
     /// The next exploration to receive the funds
     #[account(
@@ -27,7 +27,7 @@ pub struct CarryForward<'info> {
         constraint = next_exploration.exploration_index == rolled_exploration.exploration_index + 1,
         constraint = next_exploration.status == ExplorationStatus::Active @ RigItError::ExplorationNotActive,
     )]
-    pub next_exploration: Account<'info, ExplorationState>,
+    pub next_exploration: Box<Account<'info, ExplorationState>>,
 
     #[account(
         constraint = operator.key() == protocol_config.operator @ RigItError::Unauthorized

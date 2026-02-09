@@ -34,7 +34,7 @@ pub struct CommitRandomness<'info> {
         bump = exploration_state.bump,
         constraint = exploration_state.status == ExplorationStatus::Active @ RigItError::InvalidExplorationStatus,
     )]
-    pub exploration_state: Account<'info, ExplorationState>,
+    pub exploration_state: Box<Account<'info, ExplorationState>>,
 
     #[account(
         constraint = operator.key() == protocol_config.operator @ RigItError::Unauthorized

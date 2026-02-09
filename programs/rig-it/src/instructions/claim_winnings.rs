@@ -16,7 +16,7 @@ pub struct ClaimWinnings<'info> {
     #[account(
         constraint = exploration_state.status == ExplorationStatus::Settled @ RigItError::ExplorationNotSettled,
     )]
-    pub exploration_state: Account<'info, ExplorationState>,
+    pub exploration_state: Box<Account<'info, ExplorationState>>,
 
     #[account(
         constraint = rig_state.exploration == exploration_state.key(),

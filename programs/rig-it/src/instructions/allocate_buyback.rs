@@ -18,14 +18,14 @@ pub struct AllocateBuybackBudget<'info> {
         constraint = exploration_state.status == ExplorationStatus::Settled @ RigItError::ExplorationNotSettled,
         constraint = !exploration_state.buyback_allocated @ RigItError::BuybackAlreadyAllocated,
     )]
-    pub exploration_state: Account<'info, ExplorationState>,
+    pub exploration_state: Box<Account<'info, ExplorationState>>,
 
     #[account(
         mut,
         seeds = [b"block_vault", &[exploration_state.block_id]],
         bump,
     )]
-    pub block_vault: Account<'info, TokenAccount>,
+    pub block_vault: Box<Account<'info, TokenAccount>>,
 
     /// CHECK: PDA authority for vault
     #[account(
@@ -40,28 +40,28 @@ pub struct AllocateBuybackBudget<'info> {
         seeds = [b"treasury", b"buyback_burn"],
         bump
     )]
-    pub treasury_buyback_burn: Account<'info, TokenAccount>,
+    pub treasury_buyback_burn: Box<Account<'info, TokenAccount>>,
 
     #[account(
         mut,
         seeds = [b"treasury", b"buyback_lp"],
         bump
     )]
-    pub treasury_buyback_lp: Account<'info, TokenAccount>,
+    pub treasury_buyback_lp: Box<Account<'info, TokenAccount>>,
 
     #[account(
         mut,
         seeds = [b"treasury", b"team_ops"],
         bump
     )]
-    pub treasury_team_ops: Account<'info, TokenAccount>,
+    pub treasury_team_ops: Box<Account<'info, TokenAccount>>,
 
     #[account(
         mut,
         seeds = [b"treasury", b"ecosystem"],
         bump
     )]
-    pub treasury_ecosystem: Account<'info, TokenAccount>,
+    pub treasury_ecosystem: Box<Account<'info, TokenAccount>>,
 
     #[account(
         constraint = operator.key() == protocol_config.operator @ RigItError::Unauthorized

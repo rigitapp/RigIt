@@ -10,7 +10,7 @@ pub struct RefundLoser<'info> {
     #[account(
         constraint = exploration_state.status == ExplorationStatus::Settled @ RigItError::ExplorationNotSettled,
     )]
-    pub exploration_state: Account<'info, ExplorationState>,
+    pub exploration_state: Box<Account<'info, ExplorationState>>,
 
     #[account(
         constraint = rig_state.exploration == exploration_state.key(),
@@ -40,7 +40,7 @@ pub struct RefundLoser<'info> {
         seeds = [b"block_vault", &[exploration_state.block_id]],
         bump,
     )]
-    pub block_vault: Account<'info, TokenAccount>,
+    pub block_vault: Box<Account<'info, TokenAccount>>,
 
     /// CHECK: PDA authority for vault
     #[account(

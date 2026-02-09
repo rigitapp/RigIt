@@ -4,16 +4,16 @@ skip-lint = false
 resolution = true
 
 [programs.localnet]
-rig_it = "RiG1tPRogRamXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+rig_it = "CPHYypjTxBkMCpXAxQAXPQkA4AMKZXyTRXhhSDPBzzDo"
 
 [programs.devnet]
-rig_it = "RiG1tPRogRamXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+rig_it = "CPHYypjTxBkMCpXAxQAXPQkA4AMKZXyTRXhhSDPBzzDo"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "Localnet"
+cluster = "Devnet"
 wallet = "~/.config/solana/id.json"
 
 [scripts]
